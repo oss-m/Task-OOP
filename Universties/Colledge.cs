@@ -8,38 +8,85 @@ namespace Universties
 {
     public class Colledge:Universty
     {
-        public string UniverstyName { get; set; }
-        public List<Subject> Subjects { get; set; }
         public List<Department> Departments { get; set; }
-        public List<Staff> Staffs { get; set; }
         public Colledge()
         {
-            Subjects = new List<Subject>();
             Departments = new List<Department>();
-            Staffs = new List<Staff>();
         }
-        protected virtual void Show(string uni_name)
+        public override void Show()
         {
-            UniverstyName = uni_name;
-            Console.WriteLine("The List Entered is:");
+            Console.WriteLine("The List Entered is");
             for (int i = 0; i < Colledges.Count; i++)
             {
-                Console.WriteLine("{0}. {1} of {2} {3}", i + 1, Colledges[i].Name, UniverstyName, GetType().BaseType.Name);
+                Console.WriteLine("{0}. {1}", i + 1, Colledges[i].Name);
             }
         }
-        public virtual void Add(string uni_name)
+        private string DelColl(string select3, int select2)
         {
-            Console.WriteLine("Please Enter {0} Name or Enter Done if Finished", this.GetType().Name);
+            Colledges.RemoveAt(select2 - 1);
+            Console.WriteLine("Please Enter E to Edit or any key to continue");
+            var select1 = Console.ReadLine();
+            Show();
+            return select1;
+        }
+        private string EdColl(string select3, int select2)
+        {
+            Console.WriteLine("Please Enter New Name");
+            var newname = Console.ReadLine();
+            Colledges.ElementAt(select2 - 1).Name = newname;
+            Console.WriteLine("Please Enter E to Edit or any key to continue");
+            var select1 = Console.ReadLine();
+            Show();
+            return select1;
+        }
+        private List<Colledge> AddColl()
+        {
+            Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", this.GetType().Name);
             string entry = Console.ReadLine();
-            while (entry != "Done")
+            while (entry != "0")
             {
                 var coll = new Colledge();
                 coll.Name = entry;
                 Colledges.Add(coll);
-                Console.WriteLine("Please Enter Next {0} Name or Done if Finished", this.GetType().Name);
+                Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
                 entry = Console.ReadLine();
             }
-            Show(uni_name);
+            Show();
+            return Colledges;
+        }
+        private List<Colledge> EditColl(List<Colledge> colledges)
+        {
+            Colledges = colledges;
+            Console.WriteLine("Please Enter E to Edit or any key to continue");
+            var select1 = Console.ReadLine();
+            while (select1 == "E")
+            {
+                Console.WriteLine("Please Enter {0} Number to Edit", this.GetType().Name);
+                var select2 = int.Parse(Console.ReadLine());
+                if (select2 <= 0 || select2 > Colledges.Count)
+                {
+                    Console.WriteLine("Please Enter a valid Number");
+                    select1 = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("Please Enter D to Delete or E to Edit Name");
+                    var select3 = Console.ReadLine();
+                    if (select3 == "D")
+                    {
+                        select1 = DelColl(select3, select2);
+                    }
+                    if (select3 == "E")
+                    {
+                        select1 = EdColl(select3, select2);
+                    }
+                }
+            }
+            return Colledges;
+        }
+        public List<Colledge> CreateColl()
+        {
+            return EditColl(AddColl());
         }
     }
 }

@@ -10,17 +10,15 @@ namespace Universties
     {
         public string Name { get; set; }
         public List<Colledge> Colledges { get; set; }
-        public List<Student> Students { get; set; }
         public List<Universty> Universties { get; set; }
         public Universty()
         {
             Universties = new List<Universty>();
             Colledges = new List<Colledge>();
-            Students = new List<Student>();
         }
-        protected void Show()
+        public virtual void Show()
         {
-            Console.WriteLine("The List Entered is:");
+            Console.WriteLine("The List Entered is");
             for (int i = 0; i < Universties.Count; i++)
             {
                 Console.WriteLine("{0}. {1}", i + 1, Universties[i].Name);
@@ -29,9 +27,9 @@ namespace Universties
         private string DelUni(string select3, int select2)
         {
             Universties.RemoveAt(select2 - 1);
-            Show();
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
+            Show();
             return select1;
         }
         private string EdUni(string select3, int select2)
@@ -39,27 +37,29 @@ namespace Universties
             Console.WriteLine("Please Enter New Name");
             var newname = Console.ReadLine();
             Universties.ElementAt(select2 - 1).Name = newname;
-            Show();
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
+            Show();
             return select1;
         }
-        public void Add()
+        private List<Universty> AddUni()
         {
-            Console.WriteLine("Please Enter {0} Name or Enter Done if Finished", this.GetType().Name);
+            Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", this.GetType().Name);
             string entry = Console.ReadLine();
-            while (entry != "Done")
+            while (entry != "0")
             {
                 var uni = new Universty();
                 uni.Name = entry;
                 Universties.Add(uni);
-                Console.WriteLine("Please Enter Next {0} Name or Done if Finished", this.GetType().Name);
+                Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
                 entry = Console.ReadLine();
             }
             Show();
+            return Universties;
         }
-        public void Edit()
+        private List<Universty> EditUni(List<Universty> universties)
         {
+            Universties = universties;
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
             while (select1 == "E")
@@ -85,6 +85,11 @@ namespace Universties
                     }
                 }
             }
+            return Universties;
+        }
+        public List<Universty> CreateUni()
+        {
+            return EditUni(AddUni());
         }
     }
 }
