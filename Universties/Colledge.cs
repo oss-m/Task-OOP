@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Colledge:Universty
+    public class Colledge : Universty
     {
         public List<Department> Departments { get; set; }
         public Colledge()

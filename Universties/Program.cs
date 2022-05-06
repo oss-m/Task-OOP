@@ -10,39 +10,70 @@ namespace Universties
     {
         static void Main()
         {
+            //Universties Input
             Console.WriteLine("Entering Universties Names");
             var uni = new Universty();
             uni.CreateUni();
+            //Colledges Input
             foreach (var item_uni in uni.Universties)
             {
                 Console.WriteLine("Entering Colledges Names for University {0}", item_uni.Name);
                 var coll = new Colledge();
                 item_uni.Colledges.AddRange(coll.CreateColl());
+            }
+            //Departments Input
+            foreach (var item_uni in uni.Universties)
+            {
                 foreach (var item_coll in item_uni.Colledges)
                 {
-                    Console.WriteLine("Entering Departments Names for Colledge {0}", item_coll.Name);
+                    Console.WriteLine("Entering Departments Names for\nColledge {0} of {1} University", item_coll.Name, item_uni.Name);
                     var dep = new Department();
                     item_coll.Departments.AddRange(dep.CreateDep());
+                }
+            }
+            //Subjects Input
+            foreach (var item_uni in uni.Universties)
+            {
+                foreach (var item_coll in item_uni.Colledges)
+                {
                     foreach (var item_dep in item_coll.Departments)
                     {
-                        Console.WriteLine("Entering Subjects Names for Department {0}", item_dep.Name);
+                        Console.WriteLine("Entering Subjects Names for\nDepartment {0} of Colledge {1} of University {2}", item_dep.Name, item_coll.Name, item_uni.Name);
                         var sub = new Subject();
                         item_dep.Subjects.AddRange(sub.CreateSubj());
+                    }
+                }
+            }
+            //Staff Input
+            foreach (var item_uni in uni.Universties)
+            {
+                foreach (var item_coll in item_uni.Colledges)
+                {
+                    foreach (var item_dep in item_coll.Departments)
+                    {
                         foreach (var item_sub in item_dep.Subjects)
                         {
-                            Console.WriteLine("Entering Staffs Names for Subject {0}", item_sub.Name);
+                            Console.WriteLine("Entering Staffs Names for\nSubject {0} of Department {1} of Colledge {2} of University {3}", item_sub.Name, item_dep.Name, item_coll.Name, item_uni.Name);
                             var staff = new Staff();
                             item_sub.Staffs.AddRange(staff.CreateStaff());
                         }
                     }
+                }
+            }
+            //Students Input
+            foreach (var item_uni in uni.Universties)
+            {
+                foreach (var item_coll in item_uni.Colledges)
+                {
                     foreach (var item_dep in item_coll.Departments)
                     {
-                        Console.WriteLine("Entering Students Names for Department {0}", item_dep.Name);
+                        Console.WriteLine("Entering Students Names for\nDepartment {0} of Colledge {1} of University {2}", item_dep.Name, item_coll.Name, item_uni.Name);
                         var stu = new Student();
                         item_dep.Students.AddRange(stu.CreateStu());
                     }
                 }
             }
+            //Results
             Console.WriteLine("Retrieving Percentages");
             foreach (var item_Uni in uni.Universties)
             {
@@ -58,7 +89,7 @@ namespace Universties
                         double dep_stu_num = 0;
                         foreach (var item_Stu in item_Dep.Students)
                         {
-                            if (item_Stu.Grade>=50)
+                            if (item_Stu.Grade >= 50)
                             {
                                 dep_succ_stu_num++;
                             }

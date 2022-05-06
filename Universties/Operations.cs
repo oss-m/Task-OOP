@@ -6,67 +6,65 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Universty
+    public class Operations<T>
     {
         public string Name { get; set; }
-        public List<Universty> Universties { get; set; }
-        public List<Colledge> Colledges { get; set; }
-        public Universty()
+        public List<Operations<T>> Group { get; set; }
+        public Operations()
         {
-            Universties = new List<Universty>();
-            Colledges = new List<Colledge>();
+            Group = new List<Operations<T>>();
         }
-        public virtual void Show()
+        private void Show()
         {
             Console.WriteLine("The List Entered is");
-            for (int i = 0; i < Universties.Count; i++)
+            for (int i = 0; i < Group.Count; i++)
             {
-                Console.WriteLine("{0}. {1}", i + 1, Universties[i].Name);
+                Console.WriteLine("{0}. {1}", i + 1, Group[i].Name);
             }
         }
-        private string DelUni(string select3, int select2)
+        private string Del(string select3, int select2)
         {
-            Universties.RemoveAt(select2 - 1);
+            Group.RemoveAt(select2 - 1);
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
             Show();
             return select1;
         }
-        private string EdUni(string select3, int select2)
+        private string Ed(string select3, int select2)
         {
             Console.WriteLine("Please Enter New Name");
             var newname = Console.ReadLine();
-            Universties.ElementAt(select2 - 1).Name = newname;
+            Group.ElementAt(select2 - 1).Name = newname;
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
             Show();
             return select1;
         }
-        private List<Universty> AddUni()
+        private List<Operations<T>> Add()
         {
             Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", this.GetType().Name);
             string entry = Console.ReadLine();
             while (entry != "0")
             {
-                var uni = new Universty();
-                uni.Name = entry;
-                Universties.Add(uni);
+                var item = new Operations<T>();
+                item.Name = entry;
+                Group.Add(item);
                 Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
                 entry = Console.ReadLine();
             }
             Show();
-            return Universties;
+            return Group;
         }
-        private List<Universty> EditUni(List<Universty> universties)
+        private List<Operations<T>> Edit(List<Operations<T>> groups)
         {
-            Universties = universties;
+            Group = groups;
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
             while (select1 == "E")
             {
                 Console.WriteLine("Please Enter {0} Number to Edit", this.GetType().Name);
                 var select2 = int.Parse(Console.ReadLine());
-                if (select2 <= 0 || select2 > Universties.Count)
+                if (select2 <= 0 || select2 > Group.Count)
                 {
                     Console.WriteLine("Please Enter a valid Number");
                     select1 = Console.ReadLine();
@@ -77,19 +75,19 @@ namespace Universties
                     var select3 = Console.ReadLine();
                     if (select3 == "D")
                     {
-                        select1 = DelUni(select3, select2);
+                        select1 = Del(select3, select2);
                     }
                     if (select3 == "E")
                     {
-                        select1 = EdUni(select3, select2);
+                        select1 = Ed(select3, select2);
                     }
                 }
             }
-            return Universties;
+            return Group;
         }
-        public List<Universty> CreateUni()
+        public List<Operations<T>> Create()
         {
-            return EditUni(AddUni());
+            return Edit(Add());
         }
     }
 }
