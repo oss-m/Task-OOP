@@ -103,7 +103,7 @@ namespace Universties
                         coll_stu_num += dep_stu_num;
                     }
                     double coll_per = (coll_succ_stu_num / coll_stu_num) * 100;
-                    Console.WriteLine("{0} Colledge has Success Percentage of {1}%", item_Coll.Name, coll_per);
+                    Console.WriteLine("{0} Colledge of Universty {1} has Success Percentage of {2}%", item_Coll.Name, item_Uni.Name, coll_per);
                     uni_succ_stu_num += coll_succ_stu_num;
                     uni_stu_num += coll_stu_num;
                 }

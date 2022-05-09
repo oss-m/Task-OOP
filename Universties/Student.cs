@@ -8,7 +8,7 @@ namespace Universties
 {
     public class Student : Operations<Student>
     {
-        protected override List<Operations<Student>> Add(List<Operations<Student>> Group)
+        public override List<Operations<Student>> Add(List<Operations<Student>> Group)
         {
             Group = new List<Operations<Student>>();
             Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", this.GetType().Name);

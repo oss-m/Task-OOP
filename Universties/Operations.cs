@@ -32,7 +32,7 @@ namespace Universties
             Show(Group);
             return Group;
         }
-        public void Show(List<Operations<T>> Group)
+        protected void Show(List<Operations<T>> Group)
         {
             Console.WriteLine("The List Entered is:");
             for (int i = 0; i < Group.Count; i++)
@@ -40,7 +40,7 @@ namespace Universties
                 Console.WriteLine("{0}. {1} {2}", i + 1, Group[i].Name, GetType().Name);
             }
         }
-        public string Del(string select3, int select2, List<Operations<T>> Group)
+        private string Del(string select3, int select2, List<Operations<T>> Group)
         {
             Group.RemoveAt(select2 - 1);
             Console.WriteLine("Please Enter E to Edit or any key to continue");
@@ -48,7 +48,7 @@ namespace Universties
             Show(Group);
             return select1;
         }
-        public string Ed(string select3, int select2, List<Operations<T>> Group)
+        private string Ed(string select3, int select2, List<Operations<T>> Group)
         {
             Console.WriteLine("Please Enter New Name");
             var newname = Console.ReadLine();
@@ -58,7 +58,7 @@ namespace Universties
             Show(Group);
             return select1;
         }
-        public List<Operations<T>> Edit(List<Operations<T>> Group)
+        private List<Operations<T>> Edit(List<Operations<T>> Group)
         {
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
