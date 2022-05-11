@@ -19,6 +19,7 @@ namespace Universties
                 Console.WriteLine("Entering Colledges Names for University {0}", item_uni.Name);
                 var coll = new Colledge();
                 item_uni.Colledges.AddRange(coll.Create(item_uni.Colledges));
+
             }
             //Departments Input
             foreach (var item_uni in uni.Universties)
@@ -93,9 +94,16 @@ namespace Universties
                         double dep_stu_num = 0;
                         foreach (var item_Stu in item_Dep.Students)
                         {
-                            if (item_Stu.Grade >= 50)
+                            if (item_Stu.Grade != null)
                             {
-                                dep_succ_stu_num++;
+                                if (item_Stu.Grade >= 50)
+                                {
+                                    dep_succ_stu_num++;
+                                }
+                            }
+                            else
+                            {
+                                continue;
                             }
                             dep_stu_num++;
                         }

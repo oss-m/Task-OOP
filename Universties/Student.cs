@@ -18,12 +18,69 @@ namespace Universties
                 var item = new Student();
                 item.Name = entry;
                 Console.WriteLine("Please Enter Student {0} Grade", item.Name);
-                item.Grade = double.Parse(Console.ReadLine());
-                Group.Add(item);
+                string g = Console.ReadLine();
+                if (g == null)
+                {
+                    item.Grade = 0;
+                    Group.Add(item);
+                }
+                else if (g == "")
+                {
+                    item.Grade = 0;
+                    Group.Add(item);
+                }
+                else
+                {
+                    item.Grade = double.Parse(g);
+                    Group.Add(item);
+                }
                 Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
                 entry = Console.ReadLine();
             }
             Show(Group);
+            return Group;
+        }
+        private string EdG(string select3, int select2, List<Operations<Student>> Group)
+        {
+            Console.WriteLine("Please Enter New Grade");
+            var newgrade = double.Parse(Console.ReadLine());
+            Group.ElementAt(select2 - 1).Grade = newgrade;
+            Console.WriteLine("Please Enter E to Edit or any key to continue");
+            var select1 = Console.ReadLine();
+            Show(Group);
+            return select1;
+        }
+        public override List<Operations<Student>> Edit(List<Operations<Student>> Group)
+        {
+            Console.WriteLine("Please Enter E to Edit or any key to continue");
+            var select1 = Console.ReadLine();
+            while (select1 == "E")
+            {
+                Console.WriteLine("Please Enter {0} Number to Edit", this.GetType().Name);
+                var select2 = int.Parse(Console.ReadLine());
+                if (select2 <= 0 || select2 > Group.Count)
+                {
+                    Console.WriteLine("Please Enter a valid Number");
+                    select1 = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("Please Enter D to Delete or E to Edit Name or G to Edit Grade");
+                    var select3 = Console.ReadLine();
+                    if (select3 == "D")
+                    {
+                        select1 = Del(select3, select2, Group);
+                    }
+                    if (select3 == "E")
+                    {
+                        select1 = Ed(select3, select2, Group);
+                    }
+                    if (select3 == "G")
+                    {
+                        select1 = EdG(select3, select2, Group);
+                    }
+                }
+            }
             return Group;
         }
         //public override void Show()

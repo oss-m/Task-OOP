@@ -15,7 +15,7 @@ namespace Universties
         public List<Operations<Subject>> Subjects { get; set; }
         public List<Operations<Student>> Students { get; set; }
         public List<Operations<Staff>> Staffs { get; set; }
-        public double Grade { get; set; }
+        public double? Grade { get; set; }
         public virtual List<Operations<T>> Add(List<Operations<T>> Group)
         {
             Group = new List<Operations<T>>();
@@ -40,7 +40,7 @@ namespace Universties
                 Console.WriteLine("{0}. {1} {2}", i + 1, Group[i].Name, GetType().Name);
             }
         }
-        private string Del(string select3, int select2, List<Operations<T>> Group)
+        protected string Del(string select3, int select2, List<Operations<T>> Group)
         {
             Group.RemoveAt(select2 - 1);
             Console.WriteLine("Please Enter E to Edit or any key to continue");
@@ -48,7 +48,7 @@ namespace Universties
             Show(Group);
             return select1;
         }
-        private string Ed(string select3, int select2, List<Operations<T>> Group)
+        protected string Ed(string select3, int select2, List<Operations<T>> Group)
         {
             Console.WriteLine("Please Enter New Name");
             var newname = Console.ReadLine();
@@ -58,7 +58,7 @@ namespace Universties
             Show(Group);
             return select1;
         }
-        private List<Operations<T>> Edit(List<Operations<T>> Group)
+        public virtual List<Operations<T>> Edit(List<Operations<T>> Group)
         {
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
