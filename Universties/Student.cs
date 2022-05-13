@@ -40,6 +40,14 @@ namespace Universties
             Show(Group);
             return Group;
         }
+        public override void Show(List<Operations<Student>> Group)
+        {
+            Console.WriteLine("The List Entered is:");
+            for (int i = 0; i < Group.Count; i++)
+            {
+                Console.WriteLine("{0}. {1}, Grade is {2}", i + 1, Group[i].Name, Group[i].Grade);
+            }
+        }
         private string EdG(string select3, int select2, List<Operations<Student>> Group)
         {
             Console.WriteLine("Please Enter New Grade");

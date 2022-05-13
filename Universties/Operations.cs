@@ -32,7 +32,7 @@ namespace Universties
             Show(Group);
             return Group;
         }
-        protected void Show(List<Operations<T>> Group)
+        public virtual void Show(List<Operations<T>> Group)
         {
             Console.WriteLine("The List Entered is:");
             for (int i = 0; i < Group.Count; i++)
