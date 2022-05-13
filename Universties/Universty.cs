@@ -8,11 +8,6 @@ namespace Universties
 {
     public class Universty : Operations<Universty>
     {
-        public Universty()
-        {
-            
-            
-        }
         //public string Name { get; set; }
         //public List<Universty> Universties { get; set; }
         //public List<Colledge> Colledges { get; set; }
