@@ -9,6 +9,8 @@ namespace Universties
     public interface I_Operations<T>
     {
         List<Operations<T>> Add(List<Operations<T>> Group);
+        void Show(List<Operations<T>> Group);
+        List<Operations<T>> Edit(List<Operations<T>> Group);
         List<Operations<T>> Create(List<Operations<T>> Group);
     }
 }

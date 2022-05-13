@@ -16,6 +16,15 @@ namespace Universties
         public List<Operations<Student>> Students { get; set; }
         public List<Operations<Staff>> Staffs { get; set; }
         public double? Grade { get; set; }
+        public Operations()
+        {
+            Universties = new List<Operations<Universty>>();
+            Colledges = new List<Operations<Colledge>>();
+            Departments = new List<Operations<Department>>();
+            Subjects = new List<Operations<Subject>>();
+            Students = new List<Operations<Student>>();
+            Staffs = new List<Operations<Staff>>();
+        }
         public virtual List<Operations<T>> Add(List<Operations<T>> Group)
         {
             Group = new List<Operations<T>>();
