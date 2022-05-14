@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Department : Operations<Department>
+    public class Department : Colledge
     {
+        public List<Subject> Subjects { get; set; }
+        public List<Student> Students { get; set; }
+        public Department()
+        {
+            Subjects = new List<Subject>();
+            Students = new List<Student>();
+        }
         //public List<Student> Students { get; set; }
         //public List<Subject> Subjects { get; set; }
         //public Department()

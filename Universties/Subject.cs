@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Subject : Operations<Subject>
+    public class Subject : Department
     {
+        public List<Staff> Staffs { get; set; }
+        public Subject()
+        {
+            Staffs = new List<Staff>();
+        }
         //public List<Staff> Staffs { get; set; }
         //public Subject()
         //{

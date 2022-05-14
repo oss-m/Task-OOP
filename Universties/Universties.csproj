@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Colledge.cs" />
     <Compile Include="Department.cs" />
-    <Compile Include="I_Operations.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

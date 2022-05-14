@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Colledge : Operations<Colledge>
+    public class Colledge : Universty
     {
+        public List<Department> Departments { get; set; }
+        public Colledge()
+        {
+            Departments = new List<Department>();
+        }
         //public List<Department> Departments { get; set; }
         //public Colledge()
         //{

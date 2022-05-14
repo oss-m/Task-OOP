@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Staff : Operations<Staff>
+    public class Staff : Subject
     {
         //public override void Show()
         //{

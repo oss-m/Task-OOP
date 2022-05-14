@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Universties
@@ -10,14 +11,25 @@ namespace Universties
             //Universties Input
             Console.WriteLine("Entering Universties Names");
             var uni = new Universty();
-            uni.Universties.AddRange(uni.Create(uni.Universties));
+            var uni_op = new Operations().Create(new Operations().Groups, uni.GetType().Name);
+            foreach (var item in uni_op)
+            {
+                var uni_item = new Universty();
+                uni_item.Name = item.Name;
+                uni.Universties.Add(uni_item);
+            }
             //Colledges Input
             foreach (var item_uni in uni.Universties)
             {
                 Console.WriteLine("Entering Colledges Names for University {0}", item_uni.Name);
                 var coll = new Colledge();
-                item_uni.Colledges.AddRange(coll.Create(item_uni.Colledges));
-
+                var coll_op = new Operations().Create(new Operations().Groups, coll.GetType().Name);
+                foreach (var item in coll_op)
+                {
+                    var coll_item = new Colledge();
+                    coll_item.Name = item.Name;
+                    item_uni.Colledges.Add(coll_item);
+                }
             }
             //Departments Input
             foreach (var item_uni in uni.Universties)
@@ -26,7 +38,13 @@ namespace Universties
                 {
                     Console.WriteLine("Entering Departments Names for\nColledge {0} of {1} University", item_coll.Name, item_uni.Name);
                     var dep = new Department();
-                    item_coll.Departments.AddRange(dep.Create(item_coll.Departments));
+                    var dep_op = new Operations().Create(new Operations().Groups, dep.GetType().Name);
+                    foreach (var item in dep_op)
+                    {
+                        var dep_item = new Department();
+                        dep_item.Name = item.Name;
+                        item_coll.Departments.Add(dep_item);
+                    }
                 }
             }
             //Subjects Input
@@ -38,7 +56,13 @@ namespace Universties
                     {
                         Console.WriteLine("Entering Subjects Names for\nDepartment {0} of Colledge {1} of University {2}", item_dep.Name, item_coll.Name, item_uni.Name);
                         var sub = new Subject();
-                        item_dep.Subjects.AddRange(sub.Create(item_dep.Subjects));
+                        var sub_op = new Operations().Create(new Operations().Groups, sub.GetType().Name);
+                        foreach (var item in sub_op)
+                        {
+                            var sub_item = new Subject();
+                            sub_item.Name = item.Name;
+                            item_dep.Subjects.Add(sub_item);
+                        }
                     }
                 }
             }
@@ -53,7 +77,13 @@ namespace Universties
                         {
                             Console.WriteLine("Entering Staffs Names for\nSubject {0} of Department {1} of Colledge {2} of University {3}", item_sub.Name, item_dep.Name, item_coll.Name, item_uni.Name);
                             var staff = new Staff();
-                            item_sub.Staffs.AddRange(staff.Create(item_sub.Staffs));
+                            var staff_op = new Operations().Create(new Operations().Groups, staff.GetType().Name);
+                            foreach (var item in staff_op)
+                            {
+                                var staff_item = new Staff();
+                                staff_item.Name = item.Name;
+                                item_sub.Staffs.Add(staff_item);
+                            }
                         }
                     }
                 }
@@ -67,7 +97,14 @@ namespace Universties
                     {
                         Console.WriteLine("Entering Students Names for\nDepartment {0} of Colledge {1} of University {2}", item_dep.Name, item_coll.Name, item_uni.Name);
                         var stu = new Student();
-                        item_dep.Students.AddRange(stu.Create(item_dep.Students));
+                        var stu_op = new Operations().Create(new Operations().Groups, stu.GetType().Name);
+                        foreach (var item in stu_op)
+                        {
+                            var stu_item = new Student();
+                            stu_item.Name = item.Name;
+                            stu_item.Grade = item.Grade;
+                            item_dep.Students.Add(stu_item);
+                        }
                     }
                 }
             }
