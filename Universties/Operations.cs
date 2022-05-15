@@ -9,11 +9,12 @@ namespace Universties
     public class Operations
     {
         public string Name { get; set; }
+        public int Id { get; set; }
         public double? Grade { get; set; }
         public List<Operations> Groups { get; set; }
-        protected List<Operations> Add(List<Operations> Group, String class_name)
+        public List<Operations> Add(String class_name)
         {
-            Group = new List<Operations>();
+            Groups = new List<Operations>();
             Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", class_name);
             string entry = Console.ReadLine();
             while (entry != "0")
@@ -27,30 +28,42 @@ namespace Universties
                     if (g == null)
                     {
                         item.Grade = 0;
-                        Group.Add(item);
+                        Groups.Add(item);
                     }
                     else if (g == "")
                     {
                         item.Grade = 0;
-                        Group.Add(item);
+                        Groups.Add(item);
                     }
                     else
                     {
                         item.Grade = double.Parse(g);
-                        Group.Add(item);
+                        Groups.Add(item);
                     }
                     Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
                     entry = Console.ReadLine();
                 }
                 else
                 {
-                    Group.Add(item);
+                    Groups.Add(item);
                     Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", class_name);
                     entry = Console.ReadLine();
                 }
             }
-            Show(Group, class_name);
-            return Group;
+            int id = 1;
+            if (class_name == "Universty") { var list = Data.DUniversties; if (list.Count != 0) { id = list.LastOrDefault().Id+1; } }
+            if (class_name == "Colledge") { var list = Data.DColledges; if (list.Count != 0) { id = list.LastOrDefault().Id+1; } }
+            if (class_name == "Department") { var list = Data.DDepartments; if (list.Count != 0) { id = list.LastOrDefault().Id+1; } }
+            if (class_name == "Student") { var list = Data.DStudents; if (list.Count != 0) { id = list.LastOrDefault().Id+1; } }
+            if (class_name == "Staff") { var list = Data.DStaffs; if (list.Count != 0) { id = list.LastOrDefault().Id+1; } }
+            if (class_name == "Subject") { var list = Data.DSubjects; if (list.Count != 0) { id = list.LastOrDefault().Id+1; } }
+            foreach (var item in Groups)
+            {
+                item.Id = id;
+                id++;
+            }
+            Show(Groups, class_name);
+            return Groups;
         }
         protected void Show(List<Operations> Group, String str)
         {
@@ -59,7 +72,7 @@ namespace Universties
                 Console.WriteLine("The List Entered is:");
                 for (int i = 0; i < Group.Count; i++)
                 {
-                    Console.WriteLine("{0}. {1}, Grade is {2}", i + 1, Group[i].Name, Group[i].Grade);
+                    Console.WriteLine("{0}. {1}, Grade is {2} - ID: {3}", i + 1, Group[i].Name, Group[i].Grade, Group[i].Id);
                 }
             }
             else
@@ -67,7 +80,7 @@ namespace Universties
                 Console.WriteLine("The List Entered is:");
                 for (int i = 0; i < Group.Count; i++)
                 {
-                    Console.WriteLine("{0}. {1} {2}", i + 1, Group[i].Name, str);
+                    Console.WriteLine("{0}. {1} {2} - ID: {3}", i + 1, Group[i].Name, str, Group[i].Id);
                 }
             }
         }
@@ -102,7 +115,7 @@ namespace Universties
             Show(Group, class_name);
             return select1;
         }
-        protected List<Operations> Edit(List<Operations> Group, String str)
+        public List<Operations> Edit(List<Operations> Group, String str)
         {
             Console.WriteLine("Please Enter E to Edit or any key to continue");
             var select1 = Console.ReadLine();
@@ -151,9 +164,9 @@ namespace Universties
             }
             return Group;
         }
-        public List<Operations> Create(List<Operations> Group, String class_name)
+        public List<Operations> Create(String class_name)
         {
-            return Edit(Add(Group, class_name), class_name);
+            return Edit(Add(class_name), class_name);
         }
     }
 }

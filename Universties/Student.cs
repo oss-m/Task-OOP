@@ -6,84 +6,35 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Student : Department
+    public class Student : Operations
     {
-        //public override void Show()
-        //{
-        //    Console.WriteLine("The List Entered is");
-        //    for (int i = 0; i < Students.Count; i++)
-        //    {
-        //        Console.WriteLine("{0}. {1}", i + 1, Students[i].Name);
-        //    }
-        //}
-        //private string DelStu(string select3, int select2)
-        //{
-        //    Students.RemoveAt(select2 - 1);
-        //    Console.WriteLine("Please Enter E to Edit or any key to continue");
-        //    var select1 = Console.ReadLine();
-        //    Show();
-        //    return select1;
-        //}
-        //private string EdStu(string select3, int select2)
-        //{
-        //    Console.WriteLine("Please Enter New Name");
-        //    var newname = Console.ReadLine();
-        //    Students.ElementAt(select2 - 1).Name = newname;
-        //    Console.WriteLine("Please Enter E to Edit or any key to continue");
-        //    var select1 = Console.ReadLine();
-        //    Show();
-        //    return select1;
-        //}
-        //private List<Student> AddStu()
-        //{
-        //    Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", this.GetType().Name);
-        //    string entry = Console.ReadLine();
-        //    while (entry != "0")
-        //    {
-        //        var stu = new Student();
-        //        stu.Name = entry;
-        //        Console.WriteLine("Please Enter Student {0} Grade", stu.Name);
-        //        stu.Grade = double.Parse(Console.ReadLine());
-        //        Students.Add(stu);
-        //        Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
-        //        entry = Console.ReadLine();
-        //    }
-        //    Show();
-        //    return Students;
-        //}
-        //private List<Student> EditStu(List<Student> students)
-        //{
-        //    Students = students;
-        //    Console.WriteLine("Please Enter E to Edit or any key to continue");
-        //    var select1 = Console.ReadLine();
-        //    while (select1 == "E")
-        //    {
-        //        Console.WriteLine("Please Enter {0} Number to Edit", this.GetType().Name);
-        //        var select2 = int.Parse(Console.ReadLine());
-        //        if (select2 <= 0 || select2 > Students.Count)
-        //        {
-        //            Console.WriteLine("Please Enter a valid Number");
-        //            select1 = Console.ReadLine();
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Please Enter D to Delete or E to Edit Name");
-        //            var select3 = Console.ReadLine();
-        //            if (select3 == "D")
-        //            {
-        //                select1 = DelStu(select3, select2);
-        //            }
-        //            if (select3 == "E")
-        //            {
-        //                select1 = EdStu(select3, select2);
-        //            }
-        //        }
-        //    }
-        //    return Students;
-        //}
-        //public List<Student> CreateStu()
-        //{
-        //    return EditStu(AddStu());
-        //}
+        public string DepartmentName { get; set; }
+        public void StuCreator(Student stu, Department dep)
+        {
+            var uni_op = new Operations().Add(stu.GetType().Name);
+            foreach (var item in uni_op)
+            {
+                var stu_item = new Student();
+                stu_item.Name = item.Name;
+                stu_item.Grade = item.Grade;
+                stu_item.Id = item.Id;
+                stu_item.DepartmentName = dep.Name;
+                dep.Students.Add(stu_item);
+                Data.DStudents.Add(stu_item);
+            }
+        }
+        public void StuMenu(Student stu)
+        {
+            Console.WriteLine("Please Enter the Department Id");
+            int d_entry = int.Parse(Console.ReadLine());
+            foreach (var item_dep in Data.DDepartments)
+            {
+                if (item_dep.Id == d_entry)
+                {
+                    Console.WriteLine("Entering Students Names for Department {0}", item_dep.Name);
+                    stu.StuCreator(stu, item_dep);
+                }
+            }
+        }
     }
 }

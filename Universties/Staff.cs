@@ -6,82 +6,71 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class Staff : Subject
+    public class Staff : Operations
     {
-        //public override void Show()
-        //{
-        //    Console.WriteLine("The List Entered is");
-        //    for (int i = 0; i < Staffs.Count; i++)
-        //    {
-        //        Console.WriteLine("{0}. {1}", i + 1, Staffs[i].Name);
-        //    }
-        //}
-        //private string DelStaff(string select3, int select2)
-        //{
-        //    Staffs.RemoveAt(select2 - 1);
-        //    Console.WriteLine("Please Enter E to Edit or any key to continue");
-        //    var select1 = Console.ReadLine();
-        //    Show();
-        //    return select1;
-        //}
-        //private string EdStaff(string select3, int select2)
-        //{
-        //    Console.WriteLine("Please Enter New Name");
-        //    var newname = Console.ReadLine();
-        //    Staffs.ElementAt(select2 - 1).Name = newname;
-        //    Console.WriteLine("Please Enter E to Edit or any key to continue");
-        //    var select1 = Console.ReadLine();
-        //    Show();
-        //    return select1;
-        //}
-        //private List<Staff> AddStaff()
-        //{
-        //    Console.WriteLine("Please Enter {0} Name or Enter 0 if Finished", this.GetType().Name);
-        //    string entry = Console.ReadLine();
-        //    while (entry != "0")
-        //    {
-        //        var staff = new Staff();
-        //        staff.Name = entry;
-        //        Staffs.Add(staff);
-        //        Console.WriteLine("Please Enter Next {0} Name or 0 if Finished", this.GetType().Name);
-        //        entry = Console.ReadLine();
-        //    }
-        //    Show();
-        //    return Staffs;
-        //}
-        //private List<Staff> EditStaff(List<Staff> staffs)
-        //{
-        //    Staffs = staffs;
-        //    Console.WriteLine("Please Enter E to Edit or any key to continue");
-        //    var select1 = Console.ReadLine();
-        //    while (select1 == "E")
-        //    {
-        //        Console.WriteLine("Please Enter {0} Number to Edit", this.GetType().Name);
-        //        var select2 = int.Parse(Console.ReadLine());
-        //        if (select2 <= 0 || select2 > Staffs.Count)
-        //        {
-        //            Console.WriteLine("Please Enter a valid Number");
-        //            select1 = Console.ReadLine();
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Please Enter D to Delete or E to Edit Name");
-        //            var select3 = Console.ReadLine();
-        //            if (select3 == "D")
-        //            {
-        //                select1 = DelStaff(select3, select2);
-        //            }
-        //            if (select3 == "E")
-        //            {
-        //                select1 = EdStaff(select3, select2);
-        //            }
-        //        }
-        //    }
-        //    return Staffs;
-        //}
-        //public List<Staff> CreateStaff()
-        //{
-        //    return EditStaff(AddStaff());
-        //}
+        public string SubjectName { get; set; }
+        public string DepartmentName { get; set; }
+        public List<Subject> Subjectsstaffs { get; set; }
+        public Staff()
+        {
+            Subjectsstaffs = new List<Subject>();
+        }
+        public void StaffCreatorD(Staff staff, Department dep)
+        {
+            var uni_op = new Operations().Add(staff.GetType().Name);
+            foreach (var item in uni_op)
+            {
+                var staff_item = new Staff();
+                staff_item.Name = item.Name;
+                staff_item.Id = item.Id;
+                staff_item.DepartmentName = dep.Name;
+                dep.Staffs.Add(staff_item);
+                Data.DStaffs.Add(staff_item);
+            }
+        }
+        public void StaffCreatorS(Staff staff, Subject sub)
+        {
+            var uni_op = new Operations().Add(staff.GetType().Name);
+            foreach (var item in uni_op)
+            {
+                var staff_item = new Staff();
+                staff_item.Name = item.Name;
+                staff_item.Id = item.Id;
+                staff_item.SubjectName = sub.Name;
+                sub.Staffssubject.Add(staff_item);
+                Data.DStaffs.Add(staff_item);
+            }
+        }
+        public void StaffMenu(Staff staff)
+        {
+            Console.WriteLine("To Add Staff to a Subject Enter S,To Add Staff to a Department Enter D");
+            string subject_selector = Console.ReadLine();
+            if (subject_selector == "S")
+            {
+                Console.WriteLine("Please Enter the Subject Id");
+                int sub_entry = int.Parse(Console.ReadLine());
+                foreach (var item_sub in Data.DSubjects)
+                {
+                    if (item_sub.Id == sub_entry)
+                    {
+                        Console.WriteLine("Entering Subjects Names for Staff {0}", item_sub.Name);
+                        staff.StaffCreatorS(staff, item_sub);
+                    }
+                }
+            }
+            if (subject_selector == "D")
+            {
+                Console.WriteLine("Please Enter the Department Id");
+                int dep_entry = int.Parse(Console.ReadLine());
+                foreach (var item_dep in Data.DDepartments)
+                {
+                    if (item_dep.Id == dep_entry)
+                    {
+                        Console.WriteLine("Entering Subjects Names for Department {0}", item_dep.Name);
+                        staff.StaffCreatorD(staff, item_dep);
+                    }
+                }
+            }
+        }
     }
 }
