@@ -55,9 +55,9 @@ namespace Universties
                     if (Sub_selector == "1") { new ManageUniversty().UniEdit(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                     if (Sub_selector == "2") { new ManageColledge().CollEdit(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                     if (Sub_selector == "3") { new ManageDepartment().DepEdit(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
-                    if (Sub_selector == "4") { new ManageSubject().SubRet(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
-                    if (Sub_selector == "5") { new ManageStaff().StaffRet(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
-                    if (Sub_selector == "6") { new ManageStudent().StuRet(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "4") { new ManageSubject().SubEdit(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "5") { new ManageStaff().StaffEdit(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "6") { new ManageStudent().StuEdit(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                 }
                 if (Main_selector =="4")
                 {
