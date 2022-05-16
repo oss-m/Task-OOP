@@ -43,19 +43,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Colledge.cs" />
+    <Compile Include="Coll\Colledge.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="Department.cs" />
-    <Compile Include="Operations.cs" />
+    <Compile Include="Dep\Department.cs" />
+    <Compile Include="Coll\ManageColledge.cs" />
+    <Compile Include="Dep\ManageDepartment.cs" />
+    <Compile Include="Coll\IManageColledge.cs" />
+    <Compile Include="Dep\IManageDepartment.cs" />
+    <Compile Include="Staff\IManageStaff.cs" />
+    <Compile Include="Stu\IManageStudent.cs" />
+    <Compile Include="Sub\IManageSubject.cs" />
+    <Compile Include="Uni\IManageUniversty.cs" />
+    <Compile Include="Stu\ManageStudent.cs" />
+    <Compile Include="Staff\ManageStaff.cs" />
+    <Compile Include="Sub\ManageSubjects.cs" />
+    <Compile Include="Uni\ManageUniversty.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Staff.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="Subject.cs" />
-    <Compile Include="Universty.cs" />
+    <Compile Include="Staff\Staff.cs" />
+    <Compile Include="Stu\Student.cs" />
+    <Compile Include="Sub\Subject.cs" />
+    <Compile Include="Uni\Universty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
