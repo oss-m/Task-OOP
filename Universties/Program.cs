@@ -15,7 +15,7 @@ namespace Universties
             Data.DSubjects = new List<Subject>();
             Data.DStudents = new List<Student>();
 
-            string Main_Menu = "****************Universties Managment Program*************\nMain Menu:\n1.Add Data\n2.Retrieve Data\n3.Edit Data\n4.Get Success Percentages\n\nTo Exit Type Exit\n------------------------------------------------";
+            string Main_Menu = "****************Universties Managment Program*************\nMain Menu:\n1.Add Data\n2.Retrieve Data\n3.Edit Data\n4.Get Success Percentages\n5.Data save & Restore\n\nTo Exit Type Exit\n------------------------------------------------";
             Console.WriteLine(Main_Menu);
             string Main_selector = Console.ReadLine();
             while (Main_selector != "Exit")
@@ -68,6 +68,15 @@ namespace Universties
                     if (Sub_selector == "0") { Console.WriteLine(Main_Menu); Main_selector = Console.ReadLine(); }
                     if (Sub_selector == "1") { new ManageUniversty().UniPercent(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                     if (Sub_selector == "2") { new ManageColledge().CollPercent(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                }
+                if (Main_selector == "5")
+                {
+                    string Sub_Menu = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n1.Create & Save Files\n2.Retrieve Data\n\nTo Go Back Enter 0";
+                    Console.WriteLine(Sub_Menu);
+                    string Sub_selector = Console.ReadLine();
+                    if (Sub_selector == "0") { Console.WriteLine(Main_Menu); Main_selector = Console.ReadLine(); }
+                    if (Sub_selector == "1") { Data.CreateFiles(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "2") { Data.RetrieveFiles(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                 }
             }
         }

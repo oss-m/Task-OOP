@@ -11,7 +11,16 @@ namespace Universties
         public void StuCreator()
         {
             Console.WriteLine("Please Enter the Department Id");
-            int d_entry = int.Parse(Console.ReadLine());
+            string ent = Console.ReadLine();
+            int d_entry = 1000;
+            try
+            {
+                d_entry = int.Parse(ent);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Please enter valid value");
+            }
             foreach (var dep in Data.DDepartments)
             {
                 if (dep.Id == d_entry)

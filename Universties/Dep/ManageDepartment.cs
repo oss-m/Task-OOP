@@ -11,7 +11,16 @@ namespace Universties
         public void DepCreator()
         {
             Console.WriteLine("Please Enter the Colledge Id to add Departments to");
-            int c_entry = int.Parse(Console.ReadLine());
+            string ent = Console.ReadLine();
+            int c_entry = 1000;
+            try
+            {
+                c_entry = int.Parse(ent);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Please enter valid value");
+            }
             foreach (var coll in Data.DColledges)
             {
                 if (coll.Id == c_entry)

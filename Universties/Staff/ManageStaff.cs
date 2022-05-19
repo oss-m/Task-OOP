@@ -15,7 +15,16 @@ namespace Universties
             if (subject_selector == "S")
             {
                 Console.WriteLine("Please Enter the Subject Id to add Staff to");
-                int sub_entry = int.Parse(Console.ReadLine());
+                string ent = Console.ReadLine();
+                int sub_entry = 1000;
+                try
+                {
+                    sub_entry = int.Parse(ent);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter valid value");
+                }
                 foreach (var sub in Data.DSubjects)
                 {
                     if (sub.Id == sub_entry)
@@ -49,7 +58,16 @@ namespace Universties
             if (subject_selector == "D")
             {
                 Console.WriteLine("Please Enter the Department Id to add Staff to");
-                int dep_entry = int.Parse(Console.ReadLine());
+                string ent = Console.ReadLine();
+                int dep_entry = 1000;
+                try
+                {
+                    dep_entry = int.Parse(ent);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter valid value");
+                }
                 foreach (var dep in Data.DDepartments)
                 {
                     if (dep.Id == dep_entry)

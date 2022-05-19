@@ -11,7 +11,16 @@ namespace Universties
         public void CollCreator()
         {
             Console.WriteLine("Please Enter the University Id to add Colledges to");
-            int u_entry = int.Parse(Console.ReadLine());
+            string ent = Console.ReadLine();
+            int u_entry = 1000;
+            try
+            {
+                u_entry = int.Parse(ent);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Please enter valid value");
+            }
             foreach (var uni in Data.DUniversties)
             {
                 if (uni.Id == u_entry)
