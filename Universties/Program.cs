@@ -71,12 +71,12 @@ namespace Universties
                 }
                 if (Main_selector == "5")
                 {
-                    string Sub_Menu = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n1.Create & Save Files\n2.Retrieve Data\n\nTo Go Back Enter 0";
+                    string Sub_Menu = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n1.Save Data\n2.Retrieve Data\n\nTo Go Back Enter 0";
                     Console.WriteLine(Sub_Menu);
                     string Sub_selector = Console.ReadLine();
                     if (Sub_selector == "0") { Console.WriteLine(Main_Menu); Main_selector = Console.ReadLine(); }
-                    if (Sub_selector == "1") { Data.CreateFiles(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
-                    if (Sub_selector == "2") { Data.RetrieveFiles(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "1") { Data.SaveData(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "2") { Data.RetrieveData(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                 }
             }
         }

@@ -9,7 +9,6 @@ namespace Universties
 {
     public class Data
     {
-        public static string path { get; set; }
         public static List<Universty> DUniversties { get; set; }
         public static List<Colledge> DColledges { get; set; }
         public static List<Department> DDepartments { get; set; }
@@ -62,113 +61,146 @@ namespace Universties
             }
             
         }
-        public static void CreateFiles()
+        private static void Save(string path, List<string> list)
         {
-            Console.WriteLine("Please Enter File Path");
-            path = Console.ReadLine();
+            if (File.Exists(path))
+            {
+                var list2 = File.ReadAllLines(path);
+                var list3 = new List<string>();
+                list3.AddRange(list);
+                foreach (var i in list)
+                {
+                    foreach (var j in list2)
+                    {
+                        if (i == j)
+                        {
+                            list3.Remove(i);
+                        }
+                    }
+                }
+                File.AppendAllLines(path, list3);
+            }
+            else
+            {
+                File.AppendAllLines(path, list);
+            }
+        }
+        public static void SaveData()
+        {
+            string path = @"C:\UMP";
+            Console.WriteLine("All Data will be saved at {0}",path);
             var lists = @"\Universties.txt " + @"\Colledges.txt " + @"\Departments.txt " + @"\Subjects.txt " + @"\Staff.txt " + @"\Students.txt";
             var txtlist = lists.Split(' ');
+            string s = "";
             foreach (var path1 in txtlist)
             {
                 string path2 = path + path1;
-                using (StreamWriter txt1 = File.CreateText(path2))
+                if (path1 == @"\Universties.txt")
                 {
-                    if (path1 == @"\Universties.txt")
+                    var list = new List<string>();
+                    foreach (var item in DUniversties)
                     {
-                        foreach (var item in DUniversties)
-                        {
-                            var a = item.Name + ',';
-                            var b = item.Id.ToString() + ',';
-                            var c = item.Suc.ToString() + ',';
-                            var d = item.Tot.ToString() + ',';
-                            var e = item.Per.ToString() + ',';
-                            var f = ' ';
-                            txt1.WriteLine(a + b + c + d + e + f);
-                        }
+                        var a = item.Name + ',';
+                        var b = item.Id.ToString() + ',';
+                        var f = ' ';
+                        s = (a + b + f);
+                        list.Add(s);
                     }
-                    if (path1 == @"\Colledges.txt")
+                    Save(path2, list);
+                }
+                if (path1 == @"\Colledges.txt")
+                {
+                    var list = new List<string>();
+                    foreach (var item in DColledges)
                     {
-                        foreach (var item in DColledges)
-                        {
-                            var a = item.Name + ',';
-                            var b = item.UniName + ',';
-                            var c = item.Id.ToString() + ',';
-                            var d = item.Suc.ToString() + ',';
-                            var e = item.Tot.ToString() + ',';
-                            var f = item.Per.ToString() + ',';
-                            var g = ' ';
-                            txt1.WriteLine(a + b + c + d + e + f + g);
-                        }
+                        var a = item.Name + ',';
+                        var b = item.UniName + ',';
+                        var c = item.Id.ToString() + ',';
+                        var g = ' ';
+                        s = (a + b + c + g);
+                        list.Add(s);
                     }
-                    if (path1 == @"\Departments.txt")
+                    Save(path2, list);
+                }
+                if (path1 == @"\Departments.txt")
+                {
+                    var list = new List<string>();
+                    foreach (var item in DDepartments)
                     {
-                        foreach (var item in DDepartments)
-                        {
-                            var a = item.Name + ',';
-                            var b = item.Id.ToString() + ',';
-                            var c = item.CollName + ',';
-                            var d = ' ';
-                            txt1.WriteLine(a + b + c + d);
-                        }
+                        var a = item.Name + ',';
+                        var b = item.Id.ToString() + ',';
+                        var c = item.CollName + ',';
+                        var d = ' ';
+                        s = (a + b + c + d);
+                        list.Add(s);
                     }
-                    if (path1 == @"\Subjects.txt")
+                    Save(path2, list);
+                }
+                if (path1 == @"\Subjects.txt")
+                {
+                    var list = new List<string>();
+                    foreach (var item in DSubjects)
                     {
-                        foreach (var item in DSubjects)
-                        {
-                            var a = item.Name + ',';
-                            var b = item.Id.ToString() + ',';
-                            var c = item.DepartmentName + ',';
-                            var d = item.StaffName + ',';
-                            var e = ' ';
-                            txt1.WriteLine(a + b + c + d + e);
-                        }
+                        var a = item.Name + ',';
+                        var b = item.Id.ToString() + ',';
+                        var c = item.DepartmentName + ',';
+                        var d = item.StaffName + ',';
+                        var e = ' ';
+                        s = (a + b + c + d + e);
+                        list.Add(s);
                     }
-                    if (path1 == @"\Staff.txt")
+                    Save(path2, list);
+                }
+                if (path1 == @"\Staff.txt")
+                {
+                    var list = new List<string>();
+                    foreach (var item in DStaffs)
                     {
-                        foreach (var item in DStaffs)
-                        {
-                            var a = item.Name + ',';
-                            var b = item.Id.ToString() + ',';
-                            var c = item.DepartmentName + ',';
-                            var d = item.SubjectName +',';
-                            var e = ' ';
-                            txt1.WriteLine(a + b + c + d + e);
-                        }
+                        var a = item.Name + ',';
+                        var b = item.Id.ToString() + ',';
+                        var c = item.DepartmentName + ',';
+                        var d = item.SubjectName + ',';
+                        var e = ' ';
+                        s = (a + b + c + d + e);
+                        list.Add(s);
                     }
-                    if (path1 == @"\Students.txt")
+                    Save(path2, list);
+                }
+                if (path1 == @"\Students.txt")
+                {
+                    var list = new List<string>();
+                    foreach (var item in DStudents)
                     {
-                        foreach (var item in DStudents)
-                        {
-                            var a = item.Name + ',';
-                            var b = item.Id.ToString() + ',';
-                            var c = item.DepartmentName + ',';
-                            var d = item.Grade.ToString() + ',';
-                            var e = ' ';
-                            txt1.WriteLine(a + b + c + d + e);
-                        }
+                        var a = item.Name + ',';
+                        var b = item.Id.ToString() + ',';
+                        var c = item.DepartmentName + ',';
+                        var d = item.Grade.ToString() + ',';
+                        var e = ' ';
+                        s = (a + b + c + d + e);
+                        list.Add(s);
                     }
+                    Save(path2, list);
                 }
             }
             Console.WriteLine("Done");
         }
-        public static void RetrieveFiles()
+        public static void RetrieveData()
         {
-            Console.WriteLine("Please Enter File Path");
-            path = Console.ReadLine();
+            string path = @"C:\UMP";
+            Console.WriteLine(@"Data will be retrieved from {0}", path);
             var lists = @"\Universties.txt " + @"\Colledges.txt " + @"\Departments.txt " + @"\Subjects.txt " + @"\Staff.txt " + @"\Students.txt";
             var txtlist = lists.Split(' ');
             foreach (var path1 in txtlist)
             {
                 string path2 = path + path1;
-                string s = "";
-                using (StreamReader txt2 = File.OpenText(path2))
+                if (path1 == @"\Universties.txt")
                 {
-                    if (path1 == @"\Universties.txt")
+                    if (File.Exists(path2))
                     {
-                        var x = new List<string>();
-                        while ((s = txt2.ReadLine()) != null)
+                        var x = File.ReadAllLines(path2);
+                        if (x.Length==0)
                         {
-                            x.Add(s);
+                            Console.WriteLine("No Data to Retrieve");
                         }
                         foreach (var item in x)
                         {
@@ -176,41 +208,50 @@ namespace Universties
                             var u = new Universty()
                             {
                                 Name = z[0],
-                                Id = int.Parse(z[1]),
-                                Suc = double.Parse(z[2]),
-                                Tot = double.Parse(z[3]),
-                                Per = double.Parse(z[4])
+                                Id = int.Parse(z[1])
                             };
                             DUniversties.Add(u);
                         }
                     }
-                    if (path1 == @"\Colledges.txt")
+                    else
                     {
-                        var x = new List<string>();
-                        while ((s = txt2.ReadLine()) != null)
+                        Console.WriteLine("No Data to Retrieve");
+                    }
+                }
+                if (path1 == @"\Colledges.txt")
+                {
+                    if (File.Exists(path2))
+                    {
+                        var x = File.ReadAllLines(path2);
+                        if (x.Length == 0)
                         {
-                            x.Add(s);
+                            Console.WriteLine("No Data to Retrieve");
                         }
                         foreach (var item in x)
                         {
                             var z = item.Split(',');
-                            var c = new Colledge()
+                            var u = new Colledge()
                             {
                                 Name = z[0],
                                 UniName = z[1],
-                                Id = int.Parse(z[2]),
-                                Suc = double.Parse(z[3]),
-                                Tot = double.Parse(z[4]),
+                                Id = int.Parse(z[2])
                             };
-                            DColledges.Add(c);
+                            DColledges.Add(u);
                         }
                     }
-                    if (path1 == @"\Departments.txt")
+                    else
                     {
-                        var x = new List<string>();
-                        while ((s = txt2.ReadLine()) != null)
+                        Console.WriteLine("No Data to Retrieve");
+                    }
+                }
+                if (path1 == @"\Departments.txt")
+                {
+                    if (File.Exists(path2))
+                    {
+                        var x = File.ReadAllLines(path2);
+                        if (x.Length == 0)
                         {
-                            x.Add(s);
+                            Console.WriteLine("No Data to Retrieve");
                         }
                         foreach (var item in x)
                         {
@@ -224,12 +265,19 @@ namespace Universties
                             DDepartments.Add(d);
                         }
                     }
-                    if (path1 == @"\Subjects.txt")
+                    else
                     {
-                        var x = new List<string>();
-                        while ((s = txt2.ReadLine()) != null)
+                        Console.WriteLine("No Data to Retrieve");
+                    }
+                }
+                if (path1 == @"\Subjects.txt")
+                {
+                    if (File.Exists(path2))
+                    {
+                        var x = File.ReadAllLines(path2);
+                        if (x.Length == 0)
                         {
-                            x.Add(s);
+                            Console.WriteLine("No Data to Retrieve");
                         }
                         foreach (var item in x)
                         {
@@ -244,12 +292,19 @@ namespace Universties
                             DSubjects.Add(s1);
                         }
                     }
-                    if (path1 == @"\Staff.txt")
+                    else
                     {
-                        var x = new List<string>();
-                        while ((s = txt2.ReadLine()) != null)
+                        Console.WriteLine("No Data to Retrieve");
+                    }
+                }
+                if (path1 == @"\Staff.txt")
+                {
+                    if (File.Exists(path2))
+                    {
+                        var x = File.ReadAllLines(path2);
+                        if (x.Length == 0)
                         {
-                            x.Add(s);
+                            Console.WriteLine("No Data to Retrieve");
                         }
                         foreach (var item in x)
                         {
@@ -264,12 +319,19 @@ namespace Universties
                             DStaffs.Add(s2);
                         }
                     }
-                    if (path1 == @"\Students.txt")
+                    else
                     {
-                        var x = new List<string>();
-                        while ((s = txt2.ReadLine()) != null)
+                        Console.WriteLine("No Data to Retrieve");
+                    }
+                }
+                if (path1 == @"\Students.txt")
+                {
+                    if (File.Exists(path2))
+                    {
+                        var x = File.ReadAllLines(path2);
+                        if (x.Length == 0)
                         {
-                            x.Add(s);
+                            Console.WriteLine("No Data to Retrieve");
                         }
                         foreach (var item in x)
                         {
@@ -283,6 +345,10 @@ namespace Universties
                             };
                             DStudents.Add(s3);
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data to Retrieve");
                     }
                 }
             }
