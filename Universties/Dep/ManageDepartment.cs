@@ -38,6 +38,7 @@ namespace Universties
                             item.Id = Data.DDepartments.Last().Id + 1;
                         }
                         item.CollName = coll.Name;
+                        item.CollId = coll.Id;
                         coll.Departments.Add(item);
                         Data.DDepartments.Add(item);
                         Console.WriteLine("Please Enter Next Department Name or 0 if Finished");

@@ -14,6 +14,7 @@ namespace Universties
         public double Per { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
+        public int UniId { get; set; }
         public string UniName { get; set; }
         public List<Department> Departments { get; set; }
         public Colledge()

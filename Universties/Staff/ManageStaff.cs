@@ -42,6 +42,7 @@ namespace Universties
                                 item.Id = Data.DStaffs.Last().Id + 1;
                             }
                             item.SubjectName = sub.Name;
+                            item.SubId = sub.Id;
                             sub.Staffs.Add(item);
                             Data.DStaffs.Add(item);
                             Console.WriteLine("Please Enter Next Staff Name or 0 if Finished");
@@ -85,6 +86,7 @@ namespace Universties
                                 item.Id = Data.DStaffs.Last().Id + 1;
                             }
                             item.DepartmentName = dep.Name;
+                            item.DepId = dep.Id;
                             dep.Staffs.Add(item);
                             Data.DStaffs.Add(item);
                             Console.WriteLine("Please Enter Next Staff Name or 0 if Finished");

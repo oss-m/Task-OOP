@@ -33,6 +33,7 @@ namespace Universties
                         var item = new Student();
                         item.Name = entry;
                         item.DepartmentName = dep.Name;
+                        item.DepId = dep.Id;
                         item.Id = 1;
                         if (Data.DStudents.Count != 0)
                         {

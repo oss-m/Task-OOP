@@ -38,6 +38,7 @@ namespace Universties
                             item.Id = Data.DColledges.Last().Id + 1;
                         }
                         item.UniName = uni.Name;
+                        item.UniId = uni.Id;
                         uni.Colledges.Add(item);
                         Data.DColledges.Add(item);
                         Console.WriteLine("Please Enter Next Colledge Name or 0 if Finished");

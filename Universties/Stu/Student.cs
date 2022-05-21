@@ -10,6 +10,7 @@ namespace Universties
     {
         public string Name { get; set; }
         public int Id { get; set; }
+        public int DepId { get; set; }
         public double? Grade { get; set; }
         public string DepartmentName { get; set; }
     }

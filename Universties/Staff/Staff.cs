@@ -10,6 +10,8 @@ namespace Universties
     {
         public string Name { get; set; }
         public int Id { get; set; }
+        public int SubId { get; set; }
+        public int DepId { get; set; }
         public string SubjectName { get; set; }
         public string DepartmentName { get; set; }
         public List<Subject> Subjects { get; set; }

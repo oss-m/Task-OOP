@@ -10,6 +10,7 @@ namespace Universties
     {
         public string Name { get; set; }
         public int Id { get; set; }
+        public int CollId { get; set; }
         public string CollName { get; set; }
         public List<Staff> Staffs { get; set; }
         public List<Subject> Subjects { get; set; }
