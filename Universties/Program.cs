@@ -61,7 +61,7 @@ namespace Universties
                 }
                 if (Main_selector =="4")
                 {
-                    ManageData.Per();
+                    Data.Per();
                     string Sub_Menu = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n1.Retrieve Universties Students Success Data\n2.Retrieve Colledges Students Success Data\n\nTo Go Back Enter 0";
                     Console.WriteLine(Sub_Menu);
                     string Sub_selector = Console.ReadLine();
@@ -75,8 +75,8 @@ namespace Universties
                     Console.WriteLine(Sub_Menu);
                     string Sub_selector = Console.ReadLine();
                     if (Sub_selector == "0") { Console.WriteLine(Main_Menu); Main_selector = Console.ReadLine(); }
-                    if (Sub_selector == "1") { ManageData.SaveData(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
-                    if (Sub_selector == "2") { ManageData.RetrieveData(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "1") { Data.SaveData(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
+                    if (Sub_selector == "2") { Data.RetrieveData(); Console.WriteLine("Press Enter"); Sub_selector = Console.ReadLine(); }
                 }
             }
         }

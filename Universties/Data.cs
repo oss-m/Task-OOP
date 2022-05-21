@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace Universties
 {
-    public class ManageData : Data
+    public class Data
     {
+        public static List<Universty> DUniversties { get; set; }
+        public static List<Colledge> DColledges { get; set; }
+        public static List<Department> DDepartments { get; set; }
+        public static List<Staff> DStaffs { get; set; }
+        public static List<Subject> DSubjects { get; set; }
+        public static List<Student> DStudents { get; set; }
+
         private static void Save(string path, List<string> list)
         {
             if (File.Exists(path))
@@ -499,36 +506,42 @@ namespace Universties
         {
             string path = @"C:\UMP";
             Console.WriteLine("All Data will be saved at {0}", path);
+            if (Directory.Exists(path)==false)
+            {
+                Directory.CreateDirectory(path);
+            }
             var lists = @"\Universties.txt " + @"\Colledges.txt " + @"\Departments.txt " + @"\Subjects.txt " + @"\Staff.txt " + @"\Students.txt";
             var txtlist = lists.Split(' ');
             string s = "";
             foreach (var path1 in txtlist)
             {
-                string path2 = path + path1;
+                var list = new List<string>();
                 if (path1 == @"\Universties.txt")
                 {
-                    Save(path2, USave());
+                    list = USave();
                 }
                 if (path1 == @"\Colledges.txt")
                 {
-                    Save(path2, CSave());
+                    list = CSave();
                 }
                 if (path1 == @"\Departments.txt")
                 {
-                    Save(path2, DSave());
+                    list = DSave();
                 }
                 if (path1 == @"\Subjects.txt")
                 {
-                    Save(path2, SubSave());
+                    list = SubSave();
                 }
                 if (path1 == @"\Staff.txt")
                 {
-                    Save(path2, StaSave());
+                    list = StaSave();
                 }
                 if (path1 == @"\Students.txt")
                 {
-                    Save(path2, StuSave());
+                    list = StuSave();
                 }
+                string path2 = path + path1;
+                Save(path2, list);
             }
             Console.WriteLine("Done");
         }

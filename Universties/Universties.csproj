@@ -72,13 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coll\Colledge.cs" />
-    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="Dep\Department.cs" />
     <Compile Include="Coll\ManageColledge.cs" />
     <Compile Include="Dep\ManageDepartment.cs" />
     <Compile Include="Coll\IManageColledge.cs" />
     <Compile Include="Dep\IManageDepartment.cs" />
-    <Compile Include="Data\ManageData.cs" />
     <Compile Include="Staff\IManageStaff.cs" />
     <Compile Include="Stu\IManageStudent.cs" />
     <Compile Include="Sub\IManageSubject.cs" />
